@@ -71,13 +71,13 @@ for file in $files_list ; do
     [ -n "$VERBOSE" ] && echo "TESTING ==========> $file"
     if [ -n "$VERBOSE" ]; then
         if [ "$COVERAGE" = "yes" ]; then
-            coverage run  --source="${SOURCES}" --omit="test_*.py"  -a $file || log_nonzero_rc "$file" $?
+            coverage run  --source="${SOURCES}"  -a $file || log_nonzero_rc "$file" $?
         else
             ./$file || log_nonzero_rc "$file" $?
         fi
     else
         if [ "$COVERAGE" = "yes" ]; then
-            coverage run  --source="${SOURCES}" --omit="test_*.py"  -a $file 
+            coverage run  --source="${SOURCES}"  -a $file 
         else
             ./$file
         fi
@@ -88,8 +88,8 @@ CURR_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 BR_NO_SLASH=$(echo ${CURR_BRANCH} | sed -e 's/\//-/g')
 
 if [ "$COVERAGE" = "yes" ]; then
-    coverage report > ${WORKSPACE}/coverage.report.${BR_NO_SLASH}
+    coverage report > ${WORKSPACE}/${BUILD_NUMBER}/coverage.report.${BR_NO_SLASH}
     coverage html
-    mv htmlcov ${WORKSPACE}/coverage_dir.${BR_NO_SLASH}
+    mv htmlcov ${WORKSPACE}/${BUILD_NUMBER}/coverage_html.${BR_NO_SLASH}
 fi
 
