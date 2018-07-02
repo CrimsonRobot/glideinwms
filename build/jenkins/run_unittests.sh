@@ -88,8 +88,8 @@ CURR_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 BR_NO_SLASH=$(echo ${CURR_BRANCH} | sed -e 's/\//-/g')
 
 if [ "$COVERAGE" = "yes" ]; then
-    coverage report > ${WORKSPACE}/${BUILD_NUMBER}/coverage.report.${BR_NO_SLASH}
+    coverage report > ${WORKSPACE}/${BUILD_NUMBER}/coverage_${BR_NO_SLASH}.txt
     coverage html
-    mv htmlcov ${WORKSPACE}/${BUILD_NUMBER}/coverage_html.${BR_NO_SLASH}
+    mv htmlcov ${WORKSPACE}/${BUILD_NUMBER}/coverage_${BR_NO_SLASH}_html_files
 fi
 
