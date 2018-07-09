@@ -8,7 +8,6 @@ import xmlrunner
 
 # unittest_utils will handle putting the appropriate directories on the python
 # path for us.
-from glideinwms.unittests.unittest_utils import runTest
 from glideinwms.unittests.unittest_utils import create_temp_file
 
 from glideinwms.creation.lib.cWDictFile import DictFile
@@ -38,10 +37,10 @@ class TestDictFile(unittest.TestCase):
     def test_bad_init(self):
         try:
             df = DictFile(dir="fixtures/frontend",
-                          fname="attrs.cfg",
-                          sort_keys=True,
-                          order_matters=True,
-                          fname_idx=None)
+                              fname="attrs.cfg",
+                              sort_keys=True,
+                              order_matters=True,
+                              fname_idx=None)
             self.assertTrue(False, "DictFile init succeeded with " +
                             "sort_keys=True and order_matters=True")
         except RuntimeError:
